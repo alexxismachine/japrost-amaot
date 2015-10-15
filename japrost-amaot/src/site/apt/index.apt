@@ -1,0 +1,13 @@
+ -----
+ JaProSt AMAOT
+ -----
+ alexxismachine
+ -----
+ 2015-03-19
+ -----
+
+AMAOT - A Microchronometer Always On Top
+
+  AMAOT ist ein einfacher Countdowntimer, der sich im Vordergrund einnistet.
+  Unter Linux klappt das mit dem Vordergrund ganz gut, unter Windows manchmal.
+  Immer ist er aber auch im System-Tray zu sehen. 
