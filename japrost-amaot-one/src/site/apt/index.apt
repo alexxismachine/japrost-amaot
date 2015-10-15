@@ -1,0 +1,17 @@
+ -----
+ JaProSt AMAOT one
+ -----
+ alexxismachine
+ -----
+ 2015-03-27
+ -----
+
+AMAOT - A Microchornometer Always On Top
+
+  AMAOT ist ein einfacher Countdowntimer, der sich im Vordergrund einnistet.
+  Unter Linux klappt das mit dem Vordergrund ganz gut, unter Windows manchmal.
+  Immer ist er aber auch im System-Tray zu sehen.
+  
+  Dies ist Version ONE, die Eine-Datei-Version, ohne Abhängigkeiten, die sich jeder
+  der einen javac hat, schnell selbst kompilieren kann. 
+  Der Quelltext ist {{{./xref/de/japrost/amaot/Amaot.html}hier}}.
