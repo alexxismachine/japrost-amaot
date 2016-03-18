@@ -140,8 +140,8 @@ public class Amaot implements ActionListener {
 			// FIXME: Locate at mouse position
 			aboutFrame.setLocation(source.getX(), source.getY());
 			aboutFrame.setVisible(true);
-		} else if ("Close Menu".equals(eventText)) {
-			// nothing to do here
+		//} else if ("Close Menu".equals(eventText)) {
+		//	// nothing to do here
 		} else if ("Start".equals(eventText)) {
 			startCountdown();
 		} else if ("Reset".equals(eventText)) {

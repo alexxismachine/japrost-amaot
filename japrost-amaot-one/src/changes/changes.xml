@@ -6,6 +6,9 @@
     <release
       version="1.1.0"
       description="pom and reports">
+      <action type="update">
+        Update to new qa project.
+      </action>
       <action type="add">
         Add changes report.
       </action>
