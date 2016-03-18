@@ -27,8 +27,8 @@ private final Amaot amaot;
 			// FIXME: Locate at mouse position
 			swingUI.aboutFrame.setLocation(source.getX(), source.getY());
 			swingUI.aboutFrame.setVisible(true);
-		} else if ("Close Menu".equals(eventText)) {
-			// nothing to do here
+		//} else if ("Close Menu".equals(eventText)) {
+		//	// nothing to do here
 		} else if ("Start".equals(eventText)) {
 			amaot.startCountdown();
 		} else if ("Reset".equals(eventText)) {
