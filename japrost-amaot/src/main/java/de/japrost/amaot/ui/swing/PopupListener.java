@@ -23,6 +23,10 @@ public class PopupListener extends MouseAdapter {
 
 	private boolean drag = false;
 
+	/**
+	 * {@inheritDoc}<br>
+	 * <strong>This impelementation</strong>  sets dragging mode and shows popup if popup is triggered.
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if ((e.getModifiers() & InputEvent.BUTTON1_MASK) != 0) {
@@ -49,7 +53,7 @@ public class PopupListener extends MouseAdapter {
 
 	private void maybeShowPopup(MouseEvent e) {
 		if (e.isPopupTrigger()) {
-			this.swingUI.popup.show(e.getComponent(), e.getX(), e.getY());
+			this.swingUI.getPopup().show(e.getComponent(), e.getX(), e.getY());
 		}
 	}
 }

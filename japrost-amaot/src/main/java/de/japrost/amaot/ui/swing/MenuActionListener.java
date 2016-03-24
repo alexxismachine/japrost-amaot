@@ -7,28 +7,44 @@ import javax.swing.JMenuItem;
 
 import de.japrost.amaot.Amaot;
 
+/**
+ * ActionListener for menu actions.
+ */
 public class MenuActionListener implements ActionListener {
-private final SwingUI swingUI;
-private final Amaot amaot;
+	private final SwingUI swingUI;
+	private final Amaot amaot;
+
+	/**
+	 * Initailize with needed dependencies.
+	 * 
+	 * @param amaot
+	 *            Amaot
+	 * @param swingUI
+	 *            Amaot ui
+	 */
 	public MenuActionListener(Amaot amaot, SwingUI swingUI) {
 		super();
 		this.swingUI = swingUI;
-		this.amaot =amaot;
+		this.amaot = amaot;
 	}
 
+	/**
+	 * {@inheritDoc}<br>
+	 * <strong>This implementation</strong> handels all menu entries and delegates them to the according method of amaot or swingUI.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JMenuItem source = (JMenuItem) (e.getSource());
 		String eventText = source.getText();
 		boolean keepMenuVisible = false;
 		if ("Exit".equals(eventText)) {
-			System.exit(0);
+			amaot.exit();
 		} else if ("About".equals(eventText)) {
 			// FIXME: Locate at mouse position
-			swingUI.aboutFrame.setLocation(source.getX(), source.getY());
-			swingUI.aboutFrame.setVisible(true);
-		//} else if ("Close Menu".equals(eventText)) {
-		//	// nothing to do here
+			swingUI.getAboutFrame().setLocation(source.getX(), source.getY());
+			swingUI.getAboutFrame().setVisible(true);
+			// } else if ("Close Menu".equals(eventText)) {
+			// // nothing to do here
 		} else if ("Start".equals(eventText)) {
 			amaot.startCountdown();
 		} else if ("Reset".equals(eventText)) {
@@ -44,7 +60,7 @@ private final Amaot amaot;
 			amaot.adjustTime(eventText);
 			keepMenuVisible = true;
 		}
-		swingUI.popup.setVisible(keepMenuVisible);
+		swingUI.getPopup().setVisible(keepMenuVisible);
 	}
 
 }

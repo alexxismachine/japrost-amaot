@@ -6,6 +6,9 @@ import static de.japrost.amaot.AmaotState.ON_TIME;
 
 import javax.swing.SwingWorker;
 
+/**
+ * Task doing the count down until no time left.
+ */
 public class CountdownTask extends SwingWorker<Void, String> {
 	/**
 	 * FIXME use interface
@@ -22,18 +25,23 @@ public class CountdownTask extends SwingWorker<Void, String> {
 	 */
 	public CountdownTask(Amaot amaot, long remainingDuration) {
 		this.amaot = amaot;
-		until =System.currentTimeMillis() + this.amaot.remainingDuration;
+		until =System.currentTimeMillis() + this.amaot.getRemainingDuration();
 	}
 
 
+	/**
+	 * {@inheritDoc}<br>
+	 * <strong>This implementation<strong> controls remaining time and visual effects.
+	 */
 	@Override
 	protected Void doInBackground() {
 		boolean flackeringState = true;
-		while (!isCancelled() && this.amaot.remainingDuration > 0) {
-			this.amaot.remainingDuration = until - System.currentTimeMillis();
-			if (this.amaot.remainingDuration > warningOrange) {
+		while (!isCancelled() && this.amaot.getRemainingDuration() > 0) {
+			this.amaot.setRemainingDuration(until - System.currentTimeMillis());
+			long remainingDuration = this.amaot.getRemainingDuration();
+			if (remainingDuration > warningOrange) {
 				this.amaot.setState(ON_TIME);
-			} else if (this.amaot.remainingDuration > warningRed) {
+			} else if (remainingDuration> warningRed) {
 				this.amaot.setState(GET_READY);
 			} else {
 				flackeringState = !(flackeringState);
@@ -50,7 +58,7 @@ public class CountdownTask extends SwingWorker<Void, String> {
 				// nothing to do here
 			}
 		}
-		if (this.amaot.remainingDuration <= 0) {
+		if (this.amaot.getRemainingDuration() <= 0) {
 			amaot.finished();
 		}
 		return null;

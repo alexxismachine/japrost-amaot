@@ -12,6 +12,9 @@
       <action type="add">
         Add changes report.
       </action>
+      <action type="add">
+        Add base set of unit tests.
+      </action>
       <action type="update">
         Update to new parent.
       </action>

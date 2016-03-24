@@ -1,9 +1,8 @@
 package de.japrost.amaot;
 
-import static de.japrost.amaot.AmaotState.GET_READY;
 import static de.japrost.amaot.AmaotState.HIGHT_TIME;
-import static de.japrost.amaot.AmaotState.ON_TIME;
 import static de.japrost.amaot.AmaotState.STOPPED;
+
 import de.japrost.amaot.ui.swing.SwingUI;
 
 /**
@@ -11,7 +10,7 @@ import de.japrost.amaot.ui.swing.SwingUI;
  */
 public class Amaot {
 	private CountdownTask countdownTask;
-	long remainingDuration = 15 * 60 * 1000;
+	private long remainingDuration = 15 * 60 * 1000;
 	private long initialDuration = remainingDuration;
 	private long adjustedDuration = remainingDuration;
 	boolean started = false;
@@ -44,8 +43,7 @@ public class Amaot {
 	public void startCountdown() {
 		if (!started) {
 			started = true;
-			(countdownTask = new CountdownTask(this, remainingDuration))
-					.execute();
+			(countdownTask = new CountdownTask(this, remainingDuration)).execute();
 		}
 	}
 
@@ -81,8 +79,7 @@ public class Amaot {
 		countdownTask.cancel(true);
 		swingUI.showTimeOnDisplay(remainingDuration);
 		if (started) {
-			(countdownTask = new CountdownTask(this, remainingDuration))
-					.execute();
+			(countdownTask = new CountdownTask(this, remainingDuration)).execute();
 		} else {
 			setState(STOPPED);
 		}
@@ -123,6 +120,10 @@ public class Amaot {
 		return remainingDuration;
 	}
 
+	public void setRemainingDuration(long remainingDuration) {
+		this.remainingDuration = remainingDuration;
+	}
+
 	void redraw() {
 		// sollte irgendwie ein neutrales event sein
 		swingUI.showTimeOnDisplay(remainingDuration);
@@ -140,5 +141,9 @@ public class Amaot {
 		remainingDuration = 0;
 		started = false;
 
+	}
+
+	public void exit() {
+		System.exit(0);
 	}
 }

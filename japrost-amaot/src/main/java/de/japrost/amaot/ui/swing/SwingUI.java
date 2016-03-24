@@ -65,7 +65,7 @@ public class SwingUI {
 		amaotColorSet.putColor(NEUTRAL_BACKGROUND_COLOR, Color.BLACK);
 
 	}
-	
+
 	public void createSystemTray() {
 		SystemTray tray = SystemTray.getSystemTray();
 		Dimension trayIconSize = tray.getTrayIconSize();
@@ -88,7 +88,6 @@ public class SwingUI {
 		}
 	}
 
-	
 	public void switchImage() {
 		showImage = !showImage;
 		URL imageURL = Amaot.class.getResource(imageIconName);
@@ -114,20 +113,17 @@ public class SwingUI {
 		aboutFrame.pack();
 	}
 
-
 	public void createAndShowGUI(Amaot amaot) {
 		mainWindow = new JWindow();
 		// FIXME assure more often that AMAOT is on top
 		mainWindow.setAlwaysOnTop(true);
 		mainLabel = new JLabel(" AMAOT ");
-		mainLabel.setFont(new Font("sansserif", Font.BOLD,
-				fontSizeList[fontSizeIndex]));
+		mainLabel.setFont(new Font("sansserif", Font.BOLD, fontSizeList[fontSizeIndex]));
 		mainWindow.getContentPane().add(mainLabel);
 		popup = new JPopupMenu();
 		JMenuItem menuItem;
-		String[] menuEntries = { "Start", "Stop", "Reset", "+10", "+5", "+1",
-				"-1", "-5", "-10", "Size", "Icon", "About", "Close Menu",
-				"Exit" };
+		String[] menuEntries = { "Start", "Stop", "Reset", "+10", "+5", "+1", "-1", "-5", "-10", "Size", "Icon",
+				"About", "Close Menu", "Exit" };
 		for (String menuEntry : menuEntries) {
 			menuItem = new JMenuItem(menuEntry);
 			menuItem.addActionListener(menuActionListener);
@@ -154,8 +150,7 @@ public class SwingUI {
 		if (fontSizeIndex >= fontSizeList.length) {
 			fontSizeIndex = 0;
 		}
-		mainLabel.setFont(new Font("sansserif", Font.BOLD,
-				fontSizeList[fontSizeIndex]));
+		mainLabel.setFont(new Font("sansserif", Font.BOLD, fontSizeList[fontSizeIndex]));
 		mainWindow.pack();
 	}
 
@@ -170,38 +165,27 @@ public class SwingUI {
 		this.timeFormat = timeFormat;
 	}
 
-	public void handleStateChange(Amaot amaot, AmaotState state,
-			boolean stateChange) {
+	public void handleStateChange(Amaot amaot, AmaotState state, boolean stateChange) {
 		if (stateChange) {
-			mainWindow.getContentPane().setBackground(
-					amaotColorSet.getColor(state.toString()));
+			mainWindow.getContentPane().setBackground(amaotColorSet.getColor(state.toString()));
 		}
 		if (!showImage) {
 			Dimension trayIconSize = trayIcon.getSize();
-			long remainingPercent = amaot.getRemainingDuration() * 100
-					/ amaot.getAdjustedDuration();
-			int newColorHeightElapsed = (int) (trayIconSize.height
-					* (100 - remainingPercent) / 100);
-			if (stateChange
-					|| colorHeightElapsed != newColorHeightElapsed) {
+			long remainingPercent = amaot.getRemainingDuration() * 100 / amaot.getAdjustedDuration();
+			int newColorHeightElapsed = (int) (trayIconSize.height * (100 - remainingPercent) / 100);
+			if (stateChange || colorHeightElapsed != newColorHeightElapsed) {
 				colorHeightElapsed = newColorHeightElapsed;
-				BufferedImage myImage = new BufferedImage(trayIconSize.width,
-						trayIconSize.height, TYPE_BYTE_INDEXED);
+				BufferedImage myImage = new BufferedImage(trayIconSize.width, trayIconSize.height, TYPE_BYTE_INDEXED);
 				Graphics2D graphics2d = myImage.createGraphics();
 				// upper part is neutral while still on time
 				if (amaot.getState() == ON_TIME) {
-					graphics2d.setColor(amaotColorSet
-							.getColor(NEUTRAL_BACKGROUND_COLOR));
+					graphics2d.setColor(amaotColorSet.getColor(NEUTRAL_BACKGROUND_COLOR));
 				} else {
-					graphics2d.setColor(amaotColorSet.getColor(state
-							.toString()));
+					graphics2d.setColor(amaotColorSet.getColor(state.toString()));
 				}
-				graphics2d.fillRect(0, 0, myImage.getWidth(),
-						colorHeightElapsed);
-				graphics2d.setColor(amaotColorSet.getColor(ON_TIME
-						.toString()));
-				graphics2d.fillRect(0, colorHeightElapsed,
-						myImage.getWidth(), myImage.getHeight());
+				graphics2d.fillRect(0, 0, myImage.getWidth(), colorHeightElapsed);
+				graphics2d.setColor(amaotColorSet.getColor(ON_TIME.toString()));
+				graphics2d.fillRect(0, colorHeightElapsed, myImage.getWidth(), myImage.getHeight());
 				trayIcon.setImage(myImage);
 			}
 		} else {
@@ -211,7 +195,14 @@ public class SwingUI {
 
 	public void pack() {
 		mainWindow.pack();
+	}
 
+	public JPopupMenu getPopup() {
+		return popup;
+	}
+
+	public JFrame getAboutFrame() {
+		return aboutFrame;
 	}
 
 	public void setText(String string) {
