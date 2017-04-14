@@ -31,7 +31,7 @@ public class CountdownTask extends SwingWorker<Void, String> {
 
 	/**
 	 * {@inheritDoc}<br>
-	 * <strong>This implementation<strong> controls remaining time and visual effects.
+	 * <strong>This implementation</strong> controls remaining time and visual effects.
 	 */
 	@Override
 	protected Void doInBackground() {
