@@ -5,7 +5,8 @@
   <body>
     <release
       version="1.1.0"
-      description="pom and reports">
+      description="pom and reports"
+      date="2017-05-10">
       <action type="update">
         Update to new qa project.
       </action>
