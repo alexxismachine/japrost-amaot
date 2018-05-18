@@ -7,6 +7,7 @@ import javax.swing.JPopupMenu;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
@@ -15,6 +16,7 @@ import org.mockito.Mockito;
  * Test the {@link PopupListener}.
  */
 public class PopupListenerTest {
+
 	private PopupListener cut;
 	private SwingUI swingUI;
 	private JPopupMenu popupMenu;
@@ -35,6 +37,7 @@ public class PopupListenerTest {
 	 * Test that dragging is on if button is down.
 	 */
 	@Test
+	@Ignore("depends on screen ordering")
 	public void mouseDragged() {
 		JFrame jFrame = new JFrame("");
 		MouseEvent e = new MouseEvent(jFrame, 0, 0, 16, 10, 10, 0, false);
@@ -47,6 +50,7 @@ public class PopupListenerTest {
 	 * Test that dragging is off if button is not down.
 	 */
 	@Test
+	@Ignore("depends on screen ordering")
 	public void mouseNotDragged() {
 		JFrame jFrame = new JFrame("");
 		MouseEvent e = new MouseEvent(jFrame, 0, 0, 0, 10, 10, 0, false);
