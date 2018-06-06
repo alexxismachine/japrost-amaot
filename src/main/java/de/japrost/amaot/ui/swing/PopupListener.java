@@ -4,8 +4,6 @@ import java.awt.Component;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import de.japrost.amaot.Amaot;
 /**
  * 
  * FIXME merge with {@link SystemTrayMouseAdapter}.

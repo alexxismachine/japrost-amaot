@@ -11,6 +11,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
+import org.mockito.internal.verification.VerificationModeFactory;
 
 /**
  * Test the {@link PopupListener}.
@@ -68,6 +69,16 @@ public class PopupListenerTest {
 		MouseEvent e = new MouseEvent(jFrame, 0, 0, 0, 0, 0, 0, true);
 		cut.mousePressed(e);
 		BDDMockito.then(popupMenu).should().show(jFrame, 0, 0);
+	}
 
+	/**
+	 * Test that the pop up is not shown if popup trigger not is set.
+	 */
+	@Test
+	public void notShowPopupOnMousePressed() {
+		JFrame jFrame = new JFrame("");
+		MouseEvent e = new MouseEvent(jFrame, 0, 0, 0, 0, 0, 0, false);
+		cut.mousePressed(e);
+		BDDMockito.then(popupMenu).should(VerificationModeFactory.noMoreInteractions()).show(jFrame, 0, 0);
 	}
 }

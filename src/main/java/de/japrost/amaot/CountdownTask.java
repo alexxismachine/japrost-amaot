@@ -10,24 +10,24 @@ import javax.swing.SwingWorker;
  * Task doing the count down until no time left.
  */
 public class CountdownTask extends SwingWorker<Void, String> {
+
 	/**
 	 * FIXME use interface
 	 */
 	private final Amaot amaot;
-	private long until ; 
+	private long until;
 	private long pause = 500;
 	private long warningOrange = 5 * 60 * 1000;
 	private long warningRed = 1 * 60 * 1000;
 
 	/**
 	 * @param amaot the amaot
-	 * @param remainingDuration the remaining duration 
+	 * @param remainingDuration the remaining duration
 	 */
 	public CountdownTask(Amaot amaot, long remainingDuration) {
 		this.amaot = amaot;
-		until =System.currentTimeMillis() + this.amaot.getRemainingDuration();
+		until = System.currentTimeMillis() + this.amaot.getRemainingDuration();
 	}
-
 
 	/**
 	 * {@inheritDoc}<br>
@@ -41,7 +41,7 @@ public class CountdownTask extends SwingWorker<Void, String> {
 			long remainingDuration = this.amaot.getRemainingDuration();
 			if (remainingDuration > warningOrange) {
 				this.amaot.setState(ON_TIME);
-			} else if (remainingDuration> warningRed) {
+			} else if (remainingDuration > warningRed) {
 				this.amaot.setState(GET_READY);
 			} else {
 				flackeringState = !(flackeringState);
@@ -62,5 +62,9 @@ public class CountdownTask extends SwingWorker<Void, String> {
 			amaot.finished();
 		}
 		return null;
+	}
+
+	public void doCancel() {
+		super.cancel(true);
 	}
 }

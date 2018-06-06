@@ -17,8 +17,8 @@
 
   <properties>
     <japrost.site.locales>de</japrost.site.locales>
-    <!-- TODO reactivate -->
-    <jacoco.haltOnFailure>false</jacoco.haltOnFailure>
+    <!-- overriding parent -->
+    <version.jacoco-maven-plugin>0.8.1</version.jacoco-maven-plugin>
   </properties>
 
   <dependencies>

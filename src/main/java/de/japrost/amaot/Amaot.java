@@ -54,7 +54,7 @@ public class Amaot {
 	}
 
 	public void stopCountdown() {
-		countdownTask.cancel(true);
+		countdownTask.doCancel();
 		setState(STOPPED);
 		started = false;
 	}
@@ -76,7 +76,7 @@ public class Amaot {
 		if (newAdjustedDuration > 1000) {
 			adjustedDuration = newAdjustedDuration;
 		}
-		countdownTask.cancel(true);
+		countdownTask.doCancel();
 		swingUI.showTimeOnDisplay(remainingDuration);
 		if (started) {
 			(countdownTask = new CountdownTask(this, remainingDuration)).execute();
